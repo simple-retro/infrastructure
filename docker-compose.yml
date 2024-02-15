@@ -4,7 +4,7 @@ services:
 
   nginx:
     image: nginx:1.25.4
-    container_name: nginx
+    container_name: simple_retro_nginx
     hostname: nginx
     restart: always
     ports:
@@ -13,7 +13,7 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
       - /opt/simple-retro/cert/cert.pem:/etc/ssl/retro-cert.pem:ro
       - /opt/simple-retro/cert/key.key:/etc/ssl/retro-key.key:ro
-      - static:/etc/nginx/html/static/:ro
+      - static:/etc/nginx/html/:ro
 
     depends_on:
       - backend
@@ -21,7 +21,7 @@ services:
 
   backend:
     image: backend:0.1
-    container_name: backend
+    container_name: simple_retro_backend
     hostname: simple-retro
     restart: always
 
@@ -39,11 +39,10 @@ services:
 
     volumes:
       - /opt/simple-retro/var/database.db:/app/database.db
-      - /opt/simple-retro/etc/config.yaml:/app/config/config.yaml
 
   frontend:
     image: frontend:0.1
-    container_name: frontend
+    container_name: simple_retro_frontend
     hostname: simple-retro
 
     volumes:
