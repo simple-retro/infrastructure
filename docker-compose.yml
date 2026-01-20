@@ -20,7 +20,7 @@ services:
       - frontend
 
   backend:
-    image: ghcr.io/simple-retro/backend:v1.3.0
+    image: ghcr.io/simple-retro/backend:v1.3.1
     container_name: simple_retro_backend
     hostname: simple-retro
     restart: always
